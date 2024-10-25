@@ -157,13 +157,13 @@ SELECT * FROM students;
 
 --? Query 4: Delete all courses that have no students enrolled.
 
--- SELECT course_name
--- FROM courses
--- WHERE (
---         SELECT course_name
---         FROM enrollment
---             INNER JOIN courses ON courses.course_id = enrollment.course_id
---     );
+DELETE FROM courses
+WHERE
+    course_id NOT IN (
+        SELECT DISTINCT
+            course_id
+        FROM enrollment
+    );
 
 --? Query 5: Retrieve the names of students using a limit of 2, starting from the 3rd student.
 
